@@ -1,2 +1,1 @@
-# This repository was created to help me understand how Github works.
-_Просто я новичок:)_
+# Привет, это мой первый Github репозиторий, который был создан чтобы разобраться как тут всё работает
