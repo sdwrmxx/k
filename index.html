@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>Test page</title>
+		<link rel="icon" href="icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<style>
+			body {
+				display: flex;
+				justify-content: center;
+				background-color: #111015;
+			}
+			h1 {
+				font-family: Arial;
+				color: #ff00ff;
+				top: 10px
+			}
+			button {
+				color: #ffffff;
+				background-color: #515055;
+				position: fixed;
+				bottom: 20%;
+				border: none;
+				font-family: Monospace;
+				font-size: 18px;
+				height: 40px;
+				width: 160px;
+			}
+			button:hover {
+				background-color: #717075;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="changeColorText">этот текст изменяет цвет</h1>
+		<button id="changeColorButton">изменить цвет</button>
+		<script>
+			let isChanged = false;
+			document.getElementById('changeColorButton').addEventListener('click', function() {
+				if (isChanged == false) {
+					document.getElementById('changeColorText').style.color = "#ffffff";
+				isChanged = true;
+				} else {
+					document.getElementById('changeColorText').style.color = "#ff00ff";
+				isChanged = false;
+				}
+			}); 
+		</script>
+	</body>
+</html>
