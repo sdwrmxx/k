@@ -4,7 +4,7 @@ document.getElementById('changeColorButton').addEventListener('click', function(
 		document.getElementById('changeColorText').style.color = "#ffffff";
 	isChanged = true;
 	} else {
-		document.getElementById('changeColorText').style.color = "#ff00ff";
+		document.getElementById('changeColorText').style.color = "#000000";
 	isChanged = false;
 	}
-}); 
+}); // ff00ff 
