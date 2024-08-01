@@ -44,4 +44,4 @@ document.getElementById("switchLanguage").addEventListener("click", function() {
         setLanguage();
         console.log("language set to RU");
     }
-});
+}); 
