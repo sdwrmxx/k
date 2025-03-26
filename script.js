@@ -1,47 +1,45 @@
-let isChanged = false;
-document.getElementById('changeColorButton').addEventListener('click', function() {
-	if (isChanged == false) {
-		document.getElementById('changeColorText').style.color = "#ffffff";
-		isChanged = true;
-		console.log("color changed");
-	} else {
-		document.getElementById('changeColorText').style.color = "#ff00ff";
-		isChanged = false;
-		console.log("color changed");
-	}
+const translations = {
+  ru: { title: "Привет, мир!", button: "Изменить цвет" },
+  en: { title: "Hello, world!", button: "Change Color" },
+  uk: { title: "Привіт, світ!", button: "Змінити колір" },
+  pl: { title: "Witaj, świecie!", button: "Zmień kolor" },
+  zh: { title: "你好，世界！", button: "改变颜色" },
+  ko: { title: "안녕하세요, 세계!", button: "색 변경" },
+  ja: { title: "こんにちは、世界！", button: "色を変える" },
+  ar: { title: "مرحبا، العالم!", button: "تغيير اللون" },
+  es: { title: "¡Hola, mundo!", button: "Cambiar color" },
+  de: { title: "Hallo, Welt!", button: "Farbe ändern" },
+  fr: { title: "Bonjour, le monde!", button: "Changer la couleur" }
+};
+
+const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FFD700"];
+
+document.getElementById("changeColorButton").addEventListener("click", () => {
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.getElementById("title").style.color = randomColor;
 });
 
-let lang;
-
-if (localStorage.getItem("lang") === null) {
-	lang = "RU";
-} else {
-	lang = localStorage.getItem("lang");
-} 
-
-function setLanguage() {
-	if (lang==="EN") {
-		document.getElementById("changeColorText").textContent = "this text changes color";
-		document.getElementById("changeColorButton").textContent = "change color";
-	    document.getElementById("switchLanguage").textContent = "EN";
-    } else if (lang==="RU") {
-    	document.getElementById("changeColorText").textContent = "этот текст изменяет цвет";
-    	document.getElementById("changeColorButton").textContent = "изменить цвет";
-    	document.getElementById("switchLanguage").textContent = "RU";
-   }
-}
-setLanguage();
-
-document.getElementById("switchLanguage").addEventListener("click", function() {
-    if (lang === "RU") {
-        lang = "EN";
-        localStorage.setItem("lang", "EN");
-        setLanguage();
-        console.log("language set to EN");
-    } else if (lang === "EN") {
-        lang = "RU";
-        localStorage.removeItem("lang");
-        setLanguage();
-        console.log("language set to RU");
+document.querySelectorAll(".dropdown-content div").forEach(item => {
+  item.addEventListener("click", function() {
+    const selectedLanguage = this.getAttribute("data-lang");
+    document.getElementById("title").textContent = translations[selectedLanguage].title;
+    document.getElementById("changeColorButton").textContent = translations[selectedLanguage].button;
+    document.getElementById("currentLanguage").textContent = this.textContent;
+    try {
+      localStorage.setItem("selectedLanguage", selectedLanguage);
+    } catch (e) {
+      console.error("localStorage недоступен", e);
     }
-}); 
+  });
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLanguage = localStorage.getItem("selectedLanguage") || "ru";
+  document.getElementById("title").textContent = translations[savedLanguage].title;
+  document.getElementById("changeColorButton").textContent = translations[savedLanguage].button;
+
+  const selectedElement = document.querySelector(`.dropdown-content div[data-lang="${savedLanguage}"]`);
+  if (selectedElement) {
+    document.getElementById("currentLanguage").textContent = selectedElement.textContent;
+  }
+});
