@@ -12,7 +12,7 @@ const translations = {
   fr: { title: "Bonjour, le monde!", button: "Changer la couleur" }
 };
 
-const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FFD700"];
+const colors = ["#08ff87", "#f72d2d", "#2daaf7", "#f7cb2d", "#cb1aeb"];
 
 document.getElementById("changeColorButton").addEventListener("click", () => {
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
