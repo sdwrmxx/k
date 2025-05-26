@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор UUID v4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0px;
+    }
+    #uuid {
+      font-family: Monospace;
+      font-size: 1.5em;
+      margin: 20px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      word-break: break-word;
+    }
+    button {
+      margin-right: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Генератор UUID v4</h1>
+
+  <div id="uuid"></div>
+  <button id="generateButton">Обновить</button>
+  <button id="copyButton">Скопировать</button>
+
+  <script>
+    function generateUUIDv4() {
+      return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      );
+    }
+
+    const uuidDiv = document.getElementById('uuid');
+    const generateButton = document.getElementById('generateButton');
+    const copyButton = document.getElementById('copyButton');
+
+    function generateAndDisplay() {
+      const uuid = generateUUIDv4();
+      uuidDiv.textContent = uuid;
+    }
+
+    generateButton.addEventListener('click', generateAndDisplay);
+
+    copyButton.addEventListener('click', () => {
+      const uuid = uuidDiv.textContent;
+      if (!uuid) return;
+      navigator.clipboard.writeText(uuid)
+        .then(() => {
+          copyButton.textContent = 'Скопировано!';
+          setTimeout(() => copyButton.textContent = 'Скопировать', 2000);
+        })
+        .catch(err => console.error('Ошибка копирования:', err));
+    });
+
+    // Генерация при загрузке страницы
+    generateAndDisplay();
+  </script>
+</body>
+</html>
