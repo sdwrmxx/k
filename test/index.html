@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>title</title>
+        <style>
+            body {
+                background: linear-gradient(to bottom, #363636, #0a0505, #300000);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+            }
+            .text {
+                color: #c50d0d;
+                text-align: center;
+                font-family: monospace;
+                font-size: 1rem;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                padding: 10px;
+                transform: translate(-50%, -50%);
+                border: 2px, solid, #c50d0d;
+                border-radius: 15px;
+                max-width: 90%;
+                animation: test 2s infinite ease-in-out;
+                box-shadow: 0px 0px 30px 3px rgb(197, 13, 13, 0.2);
+            }
+            .box {
+                background-color: rgb(197, 13, 13, 0.2);
+                display: inline-block;
+                height: 20%;
+                width: 20%;
+                top: 0.3cm;
+                right: 0.3cm;
+                position: absolute;
+            }
+            #text {
+                color: rgba(255, 255, 255, 0.5);
+                font-family: monospace;
+                font-size: 10px;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                margin: auto;
+                position: absolute;
+                max-width: 90%;
+            }
+            @keyframes test {
+                0% {
+                    top: 45%;
+                    rotate: 15deg;
+                }
+                50% {
+                    top: 50%;
+                    rotate: -15deg;
+                }
+                100% {
+                    top: 45%;
+                    rotate: 15deg;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="text">
+            <h1>Заголовок</h1>
+            <p>текст</p>
+        </div>
+        <span class="box">
+            <p id="text">size</p>
+        </span>
+    </body>
+</html>
