@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary clock</title>
+    <style>
+    	body {
+    		background-color: #000;
+   		 zoom: 2;
+    	}
+		.banner {
+			color: #808070;
+			background-color: #000;
+			border-radius: 15px;
+			width: 150px;
+			height: 150px;
+			position: fixed; 
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: grid;
+			grid-auto-flow: row;
+			justify-content: center;
+			align-content: center;
+			gap: 20px;
+		}
+		.time {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: center;
+			align-content: center;
+			gap: 25px; 
+		}
+		.date {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: center;
+			align-content: center;
+			gap: 25px; 
+		}
+		.container {
+			/* background-color: #222; */
+			width: 25px; 
+			height: 55px;
+			display: grid;
+			justify-content: center;
+			align-content: center;
+			grid-auto-flow: column;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(4, 1fr);
+			gap: 5px;
+		}
+		.bit {
+			background-color: #222;
+			width: 10px;
+			height: 10px;
+			border-radius: 3px;
+		}
+		.bit.active {
+		    background-color: #0e0;
+		    box-shadow: 0 0 4px #0e0;
+		}
+    </style>
+</head>
+<body>
+    <div class=banner>
+    	<div class=time>
+		    <div class=container>
+				<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div>
+			</div>
+		    <div class=container>
+		    	<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div> 
+			</div>
+		    <div class=container>
+		    	<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div>
+			</div>
+		</div>
+		
+		<div class=date>
+			<div class=container>
+				<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div>
+			</div>
+		    <div class=container>
+				<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div>
+			</div>
+		    <div class=container>
+				<div class=bit part=1 dat-id=1></div>
+				<div class=bit part=1 dat-id=2></div>
+				<div class=bit part=1 dat-id=3></div>
+				<div class=bit part=1 dat-id=4></div>
+				
+				<div class=bit part=2 dat-id=1></div>
+				<div class=bit part=2 dat-id=2></div>
+				<div class=bit part=2 dat-id=3></div>
+				<div class=bit part=2 dat-id=4></div> 
+			</div>
+		</div>
+	</div>
+	<script>
+		function updateClock() {
+		const now = new Date();
+		const timeData = [
+			now.getHours(),
+			now.getMinutes(),
+			now.getSeconds()
+		];
+		const dateData = [
+			now.getDate(),
+			now.getMonth() + 1,
+			now.getFullYear() % 100
+		];
+		const updateGroup = (selector, dataArray) => {
+			const containers = document.querySelectorAll(`${selector} .container`);
+
+			dataArray.forEach((value, index) => {
+				const tens = Math.floor(value / 10);
+				const units = value % 10;     
+            
+				fillColumn(containers[index], 1, tens);
+				fillColumn(containers[index], 2, units);
+			});
+		};
+
+		function fillColumn(container, part, value) {
+			const binaryStr = value.toString(2).padStart(4, '0');
+        
+			for (let i = 0; i < 4; i++) {
+				const bitId = i + 1; 
+				const bit = container.querySelector(`.bit[part="${part}"][dat-id="${bitId}"]`);
+        
+				if (bit) {
+					if (binaryStr[i] === '1') {
+						bit.classList.add('active');
+					} else {
+						bit.classList.remove('active');
+					}
+				}
+			}
+		}
+		updateGroup('.time', timeData);
+		updateGroup('.date', dateData);
+		}
+
+		setInterval(updateClock, 1000);
+		updateClock();
+	</script>
+</body>
+</html>
