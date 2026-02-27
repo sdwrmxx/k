@@ -1,3 +1,5 @@
-Welcome to my github page for developing a website where I do some experiments.
+# Project Repository
 
-The site is available at https://sdwrmxx.github.io/k/home/
+This repository contains the source code for an experimental web development project.
+
+The project is hosted at: https://sdwrmxx.github.io/k/home/
