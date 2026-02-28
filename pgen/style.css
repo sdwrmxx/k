@@ -13,7 +13,7 @@ label {
 }
 
 #password {
-    font-family: Monospace;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace;
     font-size: 1.5em;
     margin-top: 20px;
     padding: 10px;
