@@ -10,7 +10,7 @@ const passwordDiv = document.getElementById('password');
 const copyButton = document.getElementById('copyButton');
 const refreshButton = document.getElementById('refreshButton');
 
-// Наборы символов
+// Charsets
 const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
 const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numberChars = '0123456789';
@@ -33,7 +33,7 @@ function generatePassword() {
 
     const length = Math.min(parseInt(lengthNumber.value) || 16, 1000);
     if (!charSet) {
-        passwordDiv.textContent = 'Выберите хотя бы один набор символов.';
+        passwordDiv.textContent = 'Please select at least one charset.';
         return;
     }
 
@@ -45,7 +45,7 @@ function generatePassword() {
     passwordDiv.textContent = password;
 }
 
-// Синхронизация ползунка и поля ввода числа
+// Synchronizing the slider and the number input field
 lengthRange.addEventListener('input', function () {
     lengthNumber.value = lengthRange.value;
     generatePassword();
@@ -55,7 +55,7 @@ lengthNumber.addEventListener('input', function () {
     generatePassword();
 });
 
-// Обработка изменений чекбоксов и поля кастомных символов
+// Handling changes to checkboxes and custom symbol fields
 lowercaseCheckbox.addEventListener('change', generatePassword);
 uppercaseCheckbox.addEventListener('change', generatePassword);
 numbersCheckbox.addEventListener('change', generatePassword);
@@ -67,20 +67,20 @@ customCheck.addEventListener('change', function () {
 });
 customCharsInput.addEventListener('input', generatePassword);
 
-// Кнопка копирования пароля
+// Copy password button
 copyButton.addEventListener('click', function () {
     const password = passwordDiv.textContent;
-    if (!password || password === 'Выберите хотя бы один набор символов.') return;
+    if (!password || password === 'Please enter at least one character.') return;
 
     navigator.clipboard.writeText(password)
         .then(() => {
-            copyButton.textContent = 'Скопировано!';
-            setTimeout(() => copyButton.textContent = 'Скопировать', 2000);
+            copyButton.textContent = 'copied!';
+            setTimeout(() => copyButton.textContent = 'Copy', 2000);
         })
         .catch(err => {
-            console.error('Ошибка при копировании:', err);
+            console.error('Error while copying:', err);
         });
 });
 
-// Первоначальная генерация пароля
+// Initial password generation
 generatePassword();

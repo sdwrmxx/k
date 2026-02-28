@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генератор паролей</title>
+    <title>Password generator</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <link rel="manifest" href="/icon/site.webmanifest">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Генератор паролей</h1>
+    <h1>Password generator</h1>
 
     <div class="input-group">
-        <label for="lengthRange">Длина пароля:</label>
+        <label for="lengthRange">Lenght:</label>
         <input type="range" id="lengthRange" min="3" max="127" value="16">
         <input type="number" id="lengthNumber" min="3" max="127" value="16">
     </div>
@@ -21,17 +25,17 @@
         <label><input type="checkbox" id="lowercase" checked> a-z</label>
         <label><input type="checkbox" id="uppercase" checked> A-Z</label>
         <label><input type="checkbox" id="numbers" checked> 0-9</label>
-        <label><input type="checkbox" id="special" checked> Спецсимволы</label>
+        <label><input type="checkbox" id="special" checked> Special characters</label>
     </div>
 
     <div class="input-group">
-        <label><input type="checkbox" id="customCheck"> Кастомные символы</label>
-        <input type="text" id="customChars" placeholder="Введите символы" disabled>
+        <label><input type="checkbox" id="customCheck"> Special characters</label>
+        <input type="text" id="customChars" placeholder="Enter characters" disabled>
     </div>
 
     <div id="password"></div>
-    <button id="refreshButton">Обновить</button>
-    <button id="copyButton">Скопировать</button>
+    <button id="refreshButton">Refresh</button>
+    <button id="copyButton">Copy</button>
 
 
     <script src="script.js"></script>

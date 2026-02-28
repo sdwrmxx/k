@@ -20,11 +20,11 @@ copyButton.addEventListener('click', () => {
     if (!uuid) return;
     navigator.clipboard.writeText(uuid)
     .then(() => {
-        copyButton.textContent = 'Скопировано!';
-        setTimeout(() => copyButton.textContent = 'Скопировать', 2000);
+        copyButton.textContent = 'copied!';
+        setTimeout(() => copyButton.textContent = 'Copy', 2000);
     })
-    .catch(err => console.error('Ошибка копирования:', err));
+    .catch(err => console.error('Error while copying:', err));
 });
 
-// Генерация при загрузке страницы
+// Automatic content generation when page refreshes
 generateAndDisplay();
