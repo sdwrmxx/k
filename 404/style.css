@@ -1,0 +1,17 @@
+body {
+    background: #000;
+    color: #ff0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+a:link {
+    color: #ff89b6;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ff89b6;
+    text-decoration: none;
+}
