@@ -4,15 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#000">
+    <meta name="description" content="Home page of sdwrmxx/k">
     <title>Home page</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/k/icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/k/icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/k/icon/favicon-16x16.png">
     <link rel="manifest" href="/k/icon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <style>
+    <!-- <style>
         /*
         body {
             background-color: black;
@@ -172,39 +178,184 @@
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(224, 245, 255, 0.3);
         }
+    </style> -->
+
+    <style>
+        :root {
+            --fg: 224 245 255;
+            --blue: 3 173 252;
+            --pink: 252 3 132;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100dvh;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgb(var(--fg));
+            background:
+                radial-gradient(circle at 0 0, rgb(var(--blue) / .4), transparent 50vmax),
+                radial-gradient(circle at 100% 100%, rgb(var(--pink) / .4), transparent 50vmax),
+                #000;
+            background-attachment: fixed;
+        }
+
+        main {
+            min-height: 100dvh;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 2rem;
+            padding: clamp(1rem, 4vw, 3rem);
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .title-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* h1 {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            font-size: clamp(3rem, 12vw, 7.5rem);
+            line-height: 1;
+        }
+
+        .site-url {
+            position: absolute;
+            top: 0.05em;
+            left: calc(100% - 0.4em);
+
+            font-size: 0.16em;
+            font-weight: 400;
+            line-height: 1.2;
+
+            color: rgb(var(--fg) / 0.6);
+            text-decoration: none;
+            white-space: nowrap;
+
+            transition: color 0.2s ease;
+            transform: translateX(-100%);
+        } */
+
+        h1 {
+            position: relative;
+            display: inline-block;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: clamp(3rem, 12vw, 7.5rem);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .site-url {
+            position: absolute;
+            top: 0.05em;
+            right: 0;
+
+            font-size: 0.16em;
+            font-weight: bold;
+            line-height: 1.2;
+
+            color: rgb(var(--fg) / 0.6);
+            text-decoration: none;
+            white-space: nowrap;
+
+            transition: color 0.2s ease;
+        }
+
+
+
+        .site-url:hover {
+            color: rgb(var(--fg));
+        }
+
+        .menu {
+            align-self: center;
+            justify-self: center;
+            width: min(1000px, 100%);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            display: block;
+            padding: 25px;
+            border-radius: 16px;
+            color: inherit;
+            text-decoration: none;
+            background: rgb(255 255 255 / .05);
+            border: 1px solid transparent;
+            backdrop-filter: blur(10px);
+            transition: transform .2s, background .2s, border-color .2s;
+        }
+
+        .card:hover,
+        .card:focus-visible {
+            transform: translateY(-5px);
+            background: rgb(255 255 255 / .08);
+            border-color: rgb(var(--fg) / .3);
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: .875rem;
+            opacity: .65;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card {
+                transition: none;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+        }
     </style>
+
 </head>
 
 <body>
-    <div class="title">
-        <div id="title-main">
-            Welcome
-            <a href="#" id="title-link">https://sdwrmxx.github.io/k</a>
-        </div>
-    </div>
-    <div class="menu">
+    <main>
+        <header>
+            <div class="title-group">
+                <h1>
+                    Welcome<a class="site-url" href="https://sdwrmxx.github.io/k">sdwrmxx.github.io/k</a>
+                </h1>
+            </div>
+        </header>
 
-        <div class="card">
-            <h2>About</h2>
-            <p>Information about me and this website.</p>
-        </div>
-
-        <div class="card">
-            <h2>Projects</h2>
-            <p>My projects, experiments and other stuff.</p>
-        </div>
-
-        <div class="card">
-            <h2>GitHub</h2>
-            <p>My code and open-source projects.</p>
-        </div>
-
-        <div class="card">
-            <h2>Contact</h2>
-            <p>Ways to get in touch with me.</p>
-        </div>
-
-    </div>
-    <script src="script.js"></script>
-</body>
+        <nav class="menu">
+            <a class="card" href="../about/">
+                <h2>About</h2>
+                <p>Information about me and this website.</p>
+            </a>
+            <a class="card" href="../projects/">
+                <h2>Projects</h2>
+                <p>My projects, experiments and other stuff.</p>
+            </a>
+            <a class="card" href="https://github.com/sdwrmxx/k">
+                <h2>GitHub</h2>
+                <p>My code and open-source projects.</p>
+            </a>
+            <a class="card" href="../contact/">
+                <h2>Contact</h2>
+                <p>Ways to get in touch with me.</p>
+            </a>
+        </nav>
+    </main>
+    <script src="script.js" defer></script>
 </html>
